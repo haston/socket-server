@@ -87,6 +87,18 @@ initDb(function(err){
   console.log('Error connecting to Mongo. Message:\n'+err);
 });
 
+var io = require('socket.io')(app);
+
+io.on('connection', function (client) {
+    client.on('event', function (data) {
+        console.log("data on socket : ", data)
+    })
+
+    client.on('disconnect', function () {
+        console.log("client disconnected")
+    })
+})
+
 app.listen(port, ip);
 console.log('Server running on http://%s:%s', ip, port);
 
