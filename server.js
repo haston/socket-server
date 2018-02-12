@@ -100,6 +100,6 @@ io.on('connection', function (client) {
 })
 */
 app.listen(port, ip);
-console.log('Server running on http://%s:%s', ip, port);
+console.log('Dev Server running on http://%s:%s', ip, port);
 
 module.exports = app ;
