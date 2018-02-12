@@ -100,14 +100,29 @@ io.on('connection', function (client) {
 
     console.log("Client connected: ", client.id)
 
-    client.on('CH01', function (room, data) {
-        console.log("data on CH01 : ",room,  data)
+    client.on('JOIN', function (room) {
+        console.log("client " + client.id +" joined "+room)
+        // client.join(room)
+    })
+
+    client.on('room', function (room, data) {
+        console.log("msg to send to ", room)
+        sendDataToRoom(room, data);
     })
 
     client.on('disconnect', function () {
         console.log("client disconnected : ", client.id)
     })
 })
+
+function sendDataToRoom(room, data) {
+    try {
+        io.emit(room, data);
+        io.emit('data', data);
+    }catch(e){
+        console.log("e : ", e)
+    }
+}
 
 server.listen(port, ip);
 

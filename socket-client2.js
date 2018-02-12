@@ -2,7 +2,7 @@
 var io = require('socket.io-client');
 var socket = io.connect('http://0.0.0.0:8080', {reconnect: true});
 
-var room ="room1";
+var room ="room2";
 // Add a connect listener
 socket.on('connect', function () {
     console.log('Connected!');
